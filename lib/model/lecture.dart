@@ -1,13 +1,15 @@
-class Lecture{
+class Lecture {
+  int? userId;
   int? id;
-  Map<String, String>? data;
+  String? title;
 
-  Lecture({required this.id, required this.data});
+  Lecture({this.userId, this.id, this.title});
 
-  factory Lecture.fromJson(Map<String, dynamic> json){
+  factory Lecture.fromJson(Map<String, dynamic> json) {
     return Lecture(
+      userId: json['userId'],
       id: json['id'],
-      data: json['data']
+      title: json['title'],
     );
   }
 }

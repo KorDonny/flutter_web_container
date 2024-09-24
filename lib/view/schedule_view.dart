@@ -1,39 +1,34 @@
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import "package:flutter/material.dart";
+import "package:provider/provider.dart";
+import "../view_model/lecture_view_model.dart";
 
-import '../view_model/lecture_view_model.dart';
-import '../model/lecture.dart';
+import "../model/lecture.dart";
 
-class ScheduleView extends StatefulWidget{
-  const ScheduleView({Key? key});
+class LectureView extends StatefulWidget {
+  const LectureView({super.key});
 
   @override
-  State<ScheduleView> createState() => _ScheduleViewState();
+  State<LectureView> createState() => _LectureViewState();
 }
 
-class _ScheduleViewState extends State<ScheduleView>{
-  late List<Lecture> lectureList;
-  static const double _paddingValue = 15.0;
-  static const String _offset1 = "id";
-  static const String _offset2 = "title";
-
+class _LectureViewState extends State<LectureView> {
+  late List<Lecture> LectureList;
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('시간표'),
+        title: const Text("시간표"),
       ),
       body: Consumer<LectureViewModel>(
-        builder: (context, provider, child){
-          lectureList = provider.lectureList;
+        builder: (context, provider, child) {
+          LectureList = provider.lectureList;
           return ListView.builder(
-            itemCount: lectureList.length,
-            itemBuilder: (context, index){
+            itemCount: LectureList.length,
+            itemBuilder: (context, index) {
               return Container(
-                padding: const EdgeInsets.all(_paddingValue),
+                padding: const EdgeInsets.all(15),
                 child: Text(
-                  "${lectureList[index].data?[_offset1
-                  ]}: ${lectureList[index].data?[_offset2]}",
+                  "${LectureList[index].id}: ${LectureList[index].title}",
                 ),
               );
             },

@@ -2,19 +2,18 @@ import 'package:flutter/material.dart';
 import '../model/lecture.dart';
 import '../repository/lecture_repository.dart';
 
-class LectureViewModel with ChangeNotifier{
-  late final LectureRepository _repository;
+class LectureViewModel with ChangeNotifier {
+  late final LectureRepository _lectureRepository;
   List<Lecture> _lectureList = List.empty(growable: true);
-
   List<Lecture> get lectureList => _lectureList;
 
-  ListViewModel(){
-    _repository = LectureRepository();
+  LectureViewModel() {
+    _lectureRepository = LectureRepository();
     _getLectureList();
   }
 
-  Future<void> _getLectureList() async{
-    _lectureList = await _repository.getLectureList();
+  Future<void> _getLectureList() async {
+    _lectureList = await _lectureRepository.getLectureList();
     notifyListeners();
   }
 }
